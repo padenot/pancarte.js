@@ -174,7 +174,6 @@ function PancarteRecorder(outelement, video, videofps, enableDragDrop, colors) {
   this.outelement = outelement;
   this.video = video;
   this.videoFps = videofps;
-  this.points = {};
   this.startFrame();
   this.rect = video.getBoundingClientRect();
   this.holder = putOverlayOnVideo(video);
@@ -182,6 +181,10 @@ function PancarteRecorder(outelement, video, videofps, enableDragDrop, colors) {
                             fill: "rgba(0, 0, 0, 0.3)" };
 
   var rect = video.getBoundingClientRect();
+  this.videoWidth = rect.width;
+  this.videoHeight = rect.height;
+
+  this.points = { width: this.videoWidth, height: this.videoHeight };
 
   document.body.appendChild(this.holder);
   this.r = Raphael(this.holder, this.holder.style.width, this.holder.style.height);
@@ -255,7 +258,6 @@ PancarteRecorder.prototype.startFrame = function() {
 }
 
 PancarteRecorder.prototype.addPoint = function(x, y) {
-  console.log(x, y);
   if (this.points[this.video.currentTime] == undefined) {
     this.points[this.video.currentTime] = [];
   }
