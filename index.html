@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <script src=raphael-min.js></script>
+  <script src=pancarte.js></script>
+  <script src=timecode-example.js></script>
+  <style>
+    /* do teh stylez */
+    #threeseconds, #onesecond {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+<h1><code>pancarte.js</code> demo</h1>
+<div id=demo-record>
+<h2>Recording an overlay</h2>
+<div id=howto>
+  <ul>
+    <li>
+      Click four times on the video, and press "n", see the points appearing
+      the &lt;input&gt; on the right.
+    </li>
+    <li>
+      See that the video has now moved to the next frame.
+    </li>
+    <li>
+      Press "n" without clicking to have the same polygon for this frame as
+      well, do another polygon to change it.
+    </li>
+    <li>
+      When everything is nice, get the points int the &lt;input&gt; and use them
+      in the player below.
+    </li>
+</ul>
+</div>
+<video id=record preload=auto src=example.webm></video>
+<input id=points-record></input>
+<script>
+  window.addEventListener("load", function() {
+    var r = new PancarteRecorder(document.querySelector("#points-record"),
+                                 document.querySelector("#record"),
+                                 25, false,
+                                 { stroke: "rgba(0, 0, 0, 0.5)",
+                                  fill: "rgba(0, 0, 0, 0.3)" });
+  });
+</script>
+</div>
+<div id=demo-replay>
+<h2>Replaying an overlay</h2>
+<video id=replay preload=auto src=example.webm loop></video>
+<button id=play>play</button>
+<span id=onesecond>We are at one second in the video</span>
+<span id=threeseconds>We are at three a second in the video</span>
+<script>
+  window.addEventListener("load", function() {
+    var video = document.querySelector("#replay");
+    var events = [
+      {
+        time: 1.0,
+        f: function() {
+          document.querySelector("#onesecond").style.opacity = 1.0;
+        }
+      }, {
+        time: 3.0,
+        f: function() {
+          document.querySelector("#threeseconds").style.opacity = 1.0;
+        }
+      }
+    ];
+    var p = new PancartePlayer(timecode, video, function() {
+                                                alert("ALLO.");
+                                              }, events, {
+                                              stroke: "rgba(0, 0, 0, 0.5)",
+                                              fill: "rgba(255, 255, 255, 0.3)" });
+    var p2 = new PancartePlayer(timecode2, video, function() {
+                                                alert("ALLO ALLO ?");
+                                              }, [], {
+                                              stroke: "rgba(0, 0, 0, 0.5)",
+                                              fill: "rgba(128, 128, 255, 0.3)" });
+    document.querySelector("#play").addEventListener("click", function() {
+        p.play(); p2.play()
+    });
+  });
+</script>
+</div>
+</body>
+<html>

@@ -109,7 +109,9 @@ PancartePlayer.prototype.tick = function() {
       points[i].x = points[i].x * ratio + this.playerX;
       points[i].y = points[i].y * ratio + this.playerY;
     }
-    this.display(points);
+    if (points.length > 0) {
+      this.display(points);
+    }
   }
 
   if (this.events.length > 0 && this.events[0].time < this.video.currentTime) {
@@ -147,15 +149,29 @@ PancartePlayer.prototype.pause = function() {
   this.video.pause();
 }
 
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+  
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+    return { x: xPosition, y: yPosition };
+}
 
 function putOverlayOnVideo(v) {
   var holder = document.createElement("div");
   holder.style.position = "absolute";
   var rect = v.getBoundingClientRect();
 
+  var p = getPosition(v);
   // overlay
-  holder.style.top = rect.top + "px";
-  holder.style.left = rect.left + "px";
+  console.log(v.getBoundingClientRect());
+  console.log(p);
+  holder.style.top = p.y + "px";
+  holder.style.left = p.x + "px";
   holder.style.width = rect.width + "px";
   holder.style.height = rect.height + "px";
 
