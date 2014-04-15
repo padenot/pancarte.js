@@ -8,53 +8,122 @@
   <style>
     /* do teh stylez */
     #threeseconds, #onesecond {
-      opacity: 0;
+        opacity: 0;
+        font-family: monospace;
+        font-size: 0.8em;
+        padding-left: 1em;
     }
-  </style>
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+    }
+    body {
+        background-color: #fafafa;
+        font-size: 16px;
+        padding: 1em;
+        padding-top: 0;
+        font-family: 'Open Sans';
+        margin-left: 10%;
+    }
+    h1, h2 {
+        color: #515151;
+        margin-left: -5%
+    }
+    h1 {
+        font-size: 2.5em;
+        width: 100%;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid DarkGrey;
+    }
+    h2 {
+        margin-top: 2em;
+    }
+    #howto, #result {
+        margin-top: 40px;
+        display: align-block;
+        width: 40%;
+        float: left;
+        padding-right: 4em;
+    }
+    li {
+        padding-bottom: 1em;
+    }
+    #record {
+        display: align-block;
+    }
+    #points-record {
+        display: align-block;
+        height: 8em;
+        width: 10&;
+        float: right;
+        margin-top: 110px;
+        margin-right: 3em
+    }
+    #replay {
+        margin-top: 2em;
+        display: align-block;
+        float: left;
+    }
+    #play {
+        height: 4em;
+        margin-top: 140px;
+        margin-left: 3em;
+        margin-bottom: 3em;
+    }
+    footer {
+        float: right;
+        margin-bottom: 0;
+    }
+    </style>
 </head>
 
 <body>
-<h1><code>pancarte.js</code> demo</h1>
-<div id=demo-record>
-<h2>Recording an overlay</h2>
-<div id=howto>
-  <ul>
-    <li>
-      Click four times on the video, and press "n", see the points appearing
-      the &lt;input&gt; on the right.
-    </li>
-    <li>
-      See that the video has now moved to the next frame.
-    </li>
-    <li>
-      Press "n" without clicking to have the same polygon for this frame as
-      well, do another polygon to change it.
-    </li>
-    <li>
-      When everything is nice, get the points int the &lt;input&gt; and use them
-      in the player below.
-    </li>
-</ul>
+<h1>pancarte.js demo</h1>
+<div id="demo-record">
+  <h2>I. Recording an overlay</h2>
+  <div id="howto">
+    <ul>
+      <li>
+        Click four times on the video, and press "n", see the points appearing
+        the &lt;input&gt; on the right.
+      </li>
+      <li>
+        See that the video has now moved to the next frame.
+      </li>
+      <li>
+        Press "n" without clicking to have the same polygon for this frame as
+        well, do another polygon to change it.
+      </li>
+      <li>
+        When everything is nice, get the points int the &lt;input&gt; and use them
+        in the player below.
+      </li>
+  </ul>
+  </div>
+
+  <video id="record" preload=auto src=example.webm></video>
+  <input id="points-record"></input>
+  <script>
+    window.addEventListener("load", function() {
+      var r = new PancarteRecorder(document.querySelector("#points-record"),
+                                   document.querySelector("#record"),
+                                   25, false,
+                                   { stroke: "rgba(0, 0, 0, 0.5)",
+                                    fill: "rgba(0, 0, 0, 0.3)" });
+    });
+  </script>
 </div>
-<video id=record preload=auto src=example.webm></video>
-<input id=points-record></input>
-<script>
-  window.addEventListener("load", function() {
-    var r = new PancarteRecorder(document.querySelector("#points-record"),
-                                 document.querySelector("#record"),
-                                 25, false,
-                                 { stroke: "rgba(0, 0, 0, 0.5)",
-                                  fill: "rgba(0, 0, 0, 0.3)" });
-  });
-</script>
-</div>
-<div id=demo-replay>
-<h2>Replaying an overlay</h2>
-<video id=replay preload=auto src=example.webm loop></video>
-<button id=play>play</button>
-<span id=onesecond>We are at one second in the video</span>
-<span id=threeseconds>We are at three a second in the video</span>
-<script>
+
+<div id="demo-replay">
+  <h2>II. Replaying an overlay</h2>
+  <div id="result">Aaaaand... you're done.</div>
+  <video id="replay" preload=auto src=example.webm loop></video>
+  <button id="play">play</button><br>
+  <span id="onesecond">We are at one second in the video</span><br>
+  <span id="threeseconds">We are at three a second in the video</span>
+  <script>
   window.addEventListener("load", function() {
     var video = document.querySelector("#replay");
     var events = [
@@ -84,10 +153,8 @@
         p.play(); p2.play()
     });
   });
-</script>
+  </script>
 </div>
-<footer>
-Code is <a href="http://github.com/padenot/pancarte.js">here</a>
-</footer>
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 </body>
 <html>
