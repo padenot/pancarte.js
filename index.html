@@ -8,10 +8,10 @@
   <style>
     /* do teh stylez */
     #threeseconds, #onesecond {
-        opacity: 0;
-        font-family: monospace;
-        font-size: 0.8em;
-        padding-left: 1em;
+      opacity: 0;
+      font-family: monospace;
+      font-size: 0.8em;
+      padding-left: 1em;
     }
     @font-face {
       font-family: 'Open Sans';
@@ -19,68 +19,72 @@
       font-weight: 400;
       src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
     }
-    body {
-        background-color: #fafafa;
-        font-size: 16px;
-        padding: 1em;
-        padding-top: 0;
-        font-family: 'Open Sans';
-        margin-left: 10%;
+    * {
+      margin:0;
+      padding: 0;
     }
+    body {
+      background-color: #fafafa;
+      font-size: 16px;
+      padding: 1em;
+      padding-top: 0;
+      font-family: 'Open Sans';
+      margin-left: 10%;
+    }
+
     h1, h2 {
-        color: #515151;
-        margin-left: -5%
+      color: #515151;
+      margin-left: -5%
     }
     h1 {
-        font-size: 2.5em;
-        width: 100%;
-        padding-bottom: 0.5em;
-        border-bottom: 1px solid DarkGrey;
+      font-size: 2.5em;
+      width: 100%;
+      padding-bottom: 0.5em;
+      padding-top: 0.5em;
+      border-bottom: 1px solid DarkGrey;
     }
     h2 {
-        margin-top: 2em;
+      margin-top: 2em;
     }
     #howto, #result {
-        margin-top: 40px;
-        display: align-block;
-        width: 40%;
-        float: left;
-        padding-right: 4em;
+      margin-top: 40px;
+      display: align-block;
+      width: 40%;
+      float: left;
+      padding-right: 4em;
     }
     li {
-        padding-bottom: 1em;
+      padding-bottom: 1em;
     }
     #record {
-        display: align-block;
+      display: align-block;
     }
     #points-record {
-        display: align-block;
-        height: 8em;
-        width: 10&;
-        float: right;
-        margin-top: 110px;
-        margin-right: 3em
+      display: align-block;
+      height: 8em;
+      width: 10&;
+      float: right;
+      margin-top: 110px;
+      margin-right: 3em
     }
     #replay {
-        margin-top: 2em;
-        display: align-block;
-        float: left;
+      margin-top: 2em;
+      display: align-block;
+      float: left;
     }
     #play {
-        height: 4em;
-        margin-top: 140px;
-        margin-left: 3em;
-        margin-bottom: 3em;
-    }
-    footer {
-        float: right;
-        margin-bottom: 0;
+      height: 4em;
+      margin-top: 140px;
+      margin-left: 3em;
+      margin-bottom: 3em;
     }
     </style>
 </head>
 
 <body>
-<h1>pancarte.js demo</h1>
+<div id="head">
+  <h1><img src="logobis.png" style="width:1.6em; height: 1.5em;vertical-align:middle;">   pancarte.js demo</h1>
+</div>
 <div id="demo-record">
   <h2>I. Recording an overlay</h2>
   <div id="howto">
