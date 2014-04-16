@@ -53,6 +53,10 @@ var p = new PancartePlayer(timecode, video, function() {
 p.play();
 ```
 
+### Compatibility
+We are still having issues with certain versions of Firefox and Chrome.
+Have a look at the [issues page](https://github.com/padenot/pancarte.js/issues) for news and progress about it.
+
 ## License
 MPL 2.0
 
