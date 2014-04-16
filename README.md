@@ -46,7 +46,7 @@ var events = {
   },
 };
 var p = new PancartePlayer(timecode, video, function() {
-                                              alert("ALLO.");
+                                              alert("HELLO.");
                                             }, events, {
                                             stroke: "rgba(0, 0, 0, 0.5)",
                                             fill: "rgba(255, 255, 255, 0.3)" });
