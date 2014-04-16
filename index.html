@@ -49,9 +49,9 @@
       margin-top: 2em;
     }
     #howto, #result {
-      margin-top: 40px;
-      display: align-block;
-      width: 33%;
+      margin-top: 2em;
+      display: block;
+      width: 30%;
       float: left;
       padding-right: 4em;
     }
@@ -62,39 +62,44 @@
       display: align-block;
     }
     #points-record {
-      display: align-block;
-      height: 8em;
-      width: 10%;
-      float: right;
-      margin-top: 110px;
-      margin-right: 3em;
+      height: 300px;
+      width: 300px;
+      resize: none;
+      border: none;
+    }
+    .centerbutton {
+      display: block;
     }
     #replay {
-      margin-top: 2em;
-      display: align-block;
-      float: left;
+      display: block;
     }
     #play {
-      height: 4em;
-      width: 10em;
-      margin-top: 140px;
-      margin-left: 3em;
-      margin-bottom: 3em;
+      margin: 0 auto;
+      display: block;
       border: none;
-      font-size: 0.9em;
       background-color: transparent;
       -webkit-transition: all 0.3s ease-in-out;
       -moz-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       border-radius: 3px;
       border: 1px solid #A7A3A3;
-      float: right;
-      margin-right: 3em;
     }
     #play:hover {
       background-color: #CCCCCC;
       -webkit-transition: all 0.3s ease-in-out;
       -moz-transition: all 0.3s ease-in-out;
-      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    section:after {
+      content:'';
+      display:block;
+      clear: both;
+    }
+
+    .opacity-transition {
+      transition: opacity 0.3s ease-in-out;
+      text-align: center;
     }
     </style>
 </head>
@@ -103,13 +108,13 @@
 <div id="head">
   <h1><img src="logobis.png" style="width:1.6em; height: 1.5em;vertical-align:middle;">   pancarte.js demo</h1>
 </div>
-<div id="demo-record">
+<section id="demo-record">
   <h2>I. Recording an overlay</h2>
   <div id="howto">
     <ul>
       <li>
         Click four times on the video, and press "n", see the points appearing
-        the &lt;input&gt; on the right.
+        the <code>&lt;textarea&gt;</code> on the right.
       </li>
       <li>
         See that the video has now moved to the next frame.
@@ -119,14 +124,14 @@
         well, do another polygon to change it.
       </li>
       <li>
-        When everything is nice, get the points int the &lt;input&gt; and use them
+        When everything is nice, get the points int the <code>&lt;textarea&gt;</code> and use them
         in the player below.
       </li>
   </ul>
   </div>
 
   <video id="record" preload=auto src=example.webm></video>
-  <input id="points-record"></input>
+  <textarea id="points-record"></textarea>
   <script>
     window.addEventListener("load", function() {
       var r = new PancarteRecorder(document.querySelector("#points-record"),
@@ -136,17 +141,19 @@
                                     fill: "rgba(0, 0, 0, 0.3)" });
     });
   </script>
-</div>
+</section>
 
-<div id="demo-replay">
+<section id="demo-replay">
   <h2>II. Replaying an overlay</h2>
   <div id="result">Aaaaand... you're done.</div>
-  <video id="replay" preload=auto src=example.webm loop></video>
-  <button id="play" class="buttonplay">
-    <i class="fa fa-play-circle-o">  play</i>
-  </button><br>
-  <span id="onesecond">We are at one second in the video</span><br>
-  <span id="threeseconds">We are at three a second in the video</span>
+  <div class=centerbutton>
+    <video id="replay" preload=auto src=example.webm loop></video>
+    <button id="play" class="buttonplay">
+      <i class="fa fa-play-circle-o">   Play</i>
+    </button>
+    <div class=opacity-transition id="onesecond">We are at one second in the video</div>
+    <div class=opacity-transition id="threeseconds">We are at three seconds in the video</div>
+  </div>
   <script>
   window.addEventListener("load", function() {
     var video = document.querySelector("#replay");
@@ -157,7 +164,7 @@
           document.querySelector("#onesecond").style.opacity = 1.0;
         }
       }, {
-        time: 3.0,
+        time: 5.0,
         f: function() {
           document.querySelector("#threeseconds").style.opacity = 1.0;
         }
@@ -178,7 +185,7 @@
     });
   });
   </script>
-</div>
+</section>
 <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 </body>
-<html>
+</html>
