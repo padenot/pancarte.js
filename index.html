@@ -5,7 +5,9 @@
   <script src=raphael-min.js></script>
   <script src=pancarte.js></script>
   <script src=timecode-example.js></script>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <style>
+
     /* do teh stylez */
     #threeseconds, #onesecond {
       opacity: 0;
@@ -49,7 +51,7 @@
     #howto, #result {
       margin-top: 40px;
       display: align-block;
-      width: 40%;
+      width: 33%;
       float: left;
       padding-right: 4em;
     }
@@ -62,10 +64,10 @@
     #points-record {
       display: align-block;
       height: 8em;
-      width: 10&;
+      width: 10%;
       float: right;
       margin-top: 110px;
-      margin-right: 3em
+      margin-right: 3em;
     }
     #replay {
       margin-top: 2em;
@@ -74,9 +76,25 @@
     }
     #play {
       height: 4em;
+      width: 10em;
       margin-top: 140px;
       margin-left: 3em;
       margin-bottom: 3em;
+      border: none;
+      font-size: 0.9em;
+      background-color: transparent;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      border-radius: 3px;
+      border: 1px solid #A7A3A3;
+      float: right;
+      margin-right: 3em;
+    }
+    #play:hover {
+      background-color: #CCCCCC;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      border-radius: 3px;
     }
     </style>
 </head>
@@ -124,7 +142,9 @@
   <h2>II. Replaying an overlay</h2>
   <div id="result">Aaaaand... you're done.</div>
   <video id="replay" preload=auto src=example.webm loop></video>
-  <button id="play">play</button><br>
+  <button id="play" class="buttonplay">
+    <i class="fa fa-play-circle-o">  play</i>
+  </button><br>
   <span id="onesecond">We are at one second in the video</span><br>
   <span id="threeseconds">We are at three a second in the video</span>
   <script>
